@@ -268,8 +268,8 @@ Now we can test access to each folder:
 <br />
 
 <p>
-<<img width="2056" alt="Screenshot 2024-10-17 at 3 50 15 PM" src="https://github.com/user-attachments/assets/4eb4eb5f-f206-4048-a330-d85c3f0ce178">
-/p>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 50 15 PM" src="https://github.com/user-attachments/assets/4eb4eb5f-f206-4048-a330-d85c3f0ce178">
+</p>
 <p>
 On DC-1, create a Security Group named ACCOUNTANTS in ADUC.
 </p>
@@ -307,7 +307,7 @@ Re-log into Client-1 and confirm access to the accounting folder now works.
 </p>
 <br />
 
-<h2>Step 7: Viewing Logs in Event Viewer</h2>
+<h2>Step 8: Viewing Logs in Event Viewer</h2>
 
 <p>
 <img width="2056" alt="Screenshot 2024-10-17 at 3 27 14 PM" src="https://github.com/user-attachments/assets/b90bfe3e-9f1a-49f6-8515-5ca484a7e074">
