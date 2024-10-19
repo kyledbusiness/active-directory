@@ -142,36 +142,10 @@ Verify the successful domain join in ADUC by confirming Client-1 appears in the 
 </p>
 <br />
 
-<h2>Step 5: Configure Group Policy for Remote Desktop</h2>
+<h2>Step 5: Automate User Account Creation with PowerShell</h2>
 
 <p>
-
-</p>
-<p>
-Using Group Policy Management Console (GPMC), create a GPO that allows domain users access to Remote Desktop.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Apply this GPO to the _CLIENTS and _EMPLOYEES OUs.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Run gpupdate /force on Client-1 to ensure the policy takes effect.
-</p>
-<br />
-
-<h2>Step 6: Automate User Account Creation with PowerShell</h2>
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 2 38 51 PM" src="https://github.com/user-attachments/assets/73d96625-1fd1-48df-a14b-3955517c2832">
 </p>
 <p>
 Open PowerShell ISE as an administrator on DC-1.
@@ -179,7 +153,7 @@ Open PowerShell ISE as an administrator on DC-1.
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 2 41 33 PM" src="https://github.com/user-attachments/assets/a6142041-808d-4290-bf8a-794e3e10bfc9">
 </p>
 <p>
 Execute a PowerShell script to create 10 thousand user accounts in the _EMPLOYEES OU.
@@ -187,25 +161,68 @@ Execute a PowerShell script to create 10 thousand user accounts in the _EMPLOYEE
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 2 48 45 PM" src="https://github.com/user-attachments/assets/3f738f13-e369-4eb0-9a1e-ca374b4344d5">
 </p>
 <p>
-Confirm successful account creation using ADUC.
+Test one of the newly created accounts by logging into Client-1 (mydomain.com\[randomly chosen username the script generated])
+</p>
+<br />
+
+<h2>Step 6: Group Policy and Managing Accounts</h2>
+
+<p>
+</<img width="2056" alt="Screenshot 2024-10-17 at 3 07 21 PM" src="https://github.com/user-attachments/assets/0d730396-b70d-47a5-92af-479c447065ab">
+p>
+<p>
+Type gpmc.msc in Search Bar to open the Group Policy Management Console and navigate to "Account Lockout Policy" so we can adjust some settings such as lockout duration and threshold of invalid login attempts.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 12 40 PM" src="https://github.com/user-attachments/assets/0484278e-1fa7-4461-b5d6-4444d5c0b331">
 </p>
 <p>
-Test one of the newly created accounts by logging into Client-1.
+Then log into Client-1 as the Domain Admin run the command "gpupdate /force"
 </p>
 <br />
+
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 14 05 PM" src="https://github.com/user-attachments/assets/30a7f0bc-40a3-48de-9c52-c00a05511f3b">
+</p>
+<p>
+Next we open Command Prompt as an Administrator and run the command "gpresult" to confirm we made our changes.
+</p>
+<br />
+
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 17 15 PM" src="https://github.com/user-attachments/assets/c436404c-4ff6-4c99-80e1-d6b432f303f3">
+</p>
+<p>
+Now we verify this new lockout policy has taken place by logging into one of our random users with the wrong password and seeing if we get locked out.
+</p>
+<br />
+
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 18 47 PM" src="https://github.com/user-attachments/assets/b5cbfaa5-9fed-4be9-9815-ac046f7b6c91">
+</p>
+<p>
+In DC-1 we will find the user in Active Directory Users and Computers and unlock that account.
+</p>
+<br />
+
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 19 20 PM" src="https://github.com/user-attachments/assets/2532a9f6-40ac-47f5-ac1c-1dd92f5b75ed">
+</p>
+<p>
+We will log into that account again but this time with the right password and verify that our account was unlocked.
+</p>
+<br />
+
 
 <h2>Step 7: File Shares and Permissions</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 Create Network File Shares on DC-1
@@ -270,7 +287,7 @@ Re-log into Client-1 and confirm access to the accounting folder now works.
 </p>
 <br />
 
-<h2>Step 8: Viewing Logs in Event Viewer</h2>
+<h2>Step 7: Viewing Logs in Event Viewer</h2>
 
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
