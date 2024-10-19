@@ -138,7 +138,7 @@ Then allow your VM to restart.
 <p>
 </p><img width="2056" alt="Screenshot 2024-10-17 at 2 08 27 PM" src="https://github.com/user-attachments/assets/fc670165-b0c4-41f1-970f-76adb92f9f9e">
 <p>
-Verify the successful domain join in ADUC by confirming Client-1 appears in the Computers container.
+In DC-1, verify the successful domain join in ADUC by confirming Client-1 appears in the Computers container.
 </p>
 <br />
 
@@ -171,8 +171,8 @@ Test one of the newly created accounts by logging into Client-1 (mydomain.com\[r
 <h2>Step 6: Group Policy and Managing Accounts</h2>
 
 <p>
-</<img width="2056" alt="Screenshot 2024-10-17 at 3 07 21 PM" src="https://github.com/user-attachments/assets/0d730396-b70d-47a5-92af-479c447065ab">
-p>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 07 21 PM" src="https://github.com/user-attachments/assets/0d730396-b70d-47a5-92af-479c447065ab">
+</p>
 <p>
 Type gpmc.msc in Search Bar to open the Group Policy Management Console and navigate to "Account Lockout Policy" so we can adjust some settings such as lockout duration and threshold of invalid login attempts.
 </p>
@@ -222,7 +222,7 @@ We will log into that account again but this time with the right password and ve
 <h2>Step 7: File Shares and Permissions</h2>
 
 <p>
-
+<img width="2056" alt="Screenshot 2024-10-17 at 3 41 53 PM" src="https://github.com/user-attachments/assets/f4b59ba1-f617-4fc8-95ab-6e867c7e8f9f">
 </p>
 <p>
 Log into DC-1 as jane_admin and create the following folders on the C: drive:
@@ -235,26 +235,31 @@ Log into DC-1 as jane_admin and create the following folders on the C: drive:
 <br />
 
 <p>
-
-</p>
-<p>
 Set Permissions on Folders:
+<img width="2056" alt="Screenshot 2024-10-17 at 3 43 10 PM" src="https://github.com/user-attachments/assets/4aa5e84c-badb-4860-aef6-796802ba3f89">
+</p>  
+<p>
+For read-access: assign Domain Users the Read permission.
 
-- For read-access, assign Domain Users the Read permission.
-- For write-access, assign Domain Users the Read/Write permission.
-- For no-access, assign Domain Admins the Read/Write permission.
+For write-access: assign Domain Users the Read/Write permission.
+
+For no-access: assign Domain Admins the Read/Write permission.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 45 59 PM" src="https://github.com/user-attachments/assets/bf446b8b-c257-462f-845b-006ba4ac11fa">
 </p>
 <p>
-On Client-1, log in as a normal user (e.g., mydomain.com\john_employee).
+On Client-1, log in as a normal user (e.g., mydomain.com\john_employee), open the Run dialog and type \\DC-1 to access the shared folders.
+</p>
+<br />
 
-Open the Run dialog and type \\DC-1 to access the shared folders.
-
-Test access to each folder:
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 47 53 PM" src="https://github.com/user-attachments/assets/cc69b911-e144-4ec3-854d-8430c913c06d">
+</p>
+<p>
+Now we can test access to each folder:
 
 - read-access: User should be able to view files but not modify.
 - write-access: User should be able to both view and modify files.
@@ -263,15 +268,15 @@ Test access to each folder:
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
+<<img width="2056" alt="Screenshot 2024-10-17 at 3 50 15 PM" src="https://github.com/user-attachments/assets/4eb4eb5f-f206-4048-a330-d85c3f0ce178">
+/p>
 <p>
 On DC-1, create a Security Group named ACCOUNTANTS in ADUC.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 51 42 PM" src="https://github.com/user-attachments/assets/f2993713-dd08-4c26-804d-ffebfe3ca24d">
 </p>
 <p>
 Assign Read/Write permissions to the ACCOUNTANTS group on the accounting folder.
@@ -279,7 +284,7 @@ Assign Read/Write permissions to the ACCOUNTANTS group on the accounting folder.
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 52 33 PM" src="https://github.com/user-attachments/assets/c51f377a-8ae6-4613-88b0-8753c8cbc57d">
 </p>
 <p>
 On Client-1, attempt to access the accounting folder as john_employee (should fail).
@@ -287,7 +292,7 @@ On Client-1, attempt to access the accounting folder as john_employee (should fa
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 53 05 PM" src="https://github.com/user-attachments/assets/385504ce-02b4-47f0-8dc9-8d5253fecdcb">
 </p>
 <p>
 Add john_employee to the ACCOUNTANTS security group.
@@ -295,7 +300,7 @@ Add john_employee to the ACCOUNTANTS security group.
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 54 47 PM" src="https://github.com/user-attachments/assets/c7f94971-d415-485b-9612-c3ff0d24133b">
 </p>
 <p>
 Re-log into Client-1 and confirm access to the accounting folder now works.
@@ -305,29 +310,25 @@ Re-log into Client-1 and confirm access to the accounting folder now works.
 <h2>Step 7: Viewing Logs in Event Viewer</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 27 14 PM" src="https://github.com/user-attachments/assets/b90bfe3e-9f1a-49f6-8515-5ca484a7e074">
 </p>
 <p>
-Open Event Viewer on DC-1 and navigate to Windows Logs > Security.
+Search for eventvwr.msc on Client-1 and run as administrator
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 3 28 31 PM" src="https://github.com/user-attachments/assets/0c144f09-1ade-49fe-b1d2-ed3c715fa07e">
 </p>
 <p>
-View logs for:
+Navigate to Windows Logs > Security.
+
+Here, we can view logs for:
 
 - Successful/failed logon attempts.
 - Group Policy application events.
 - Network logon attempts.
-</p>
-<br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
 Use Event IDs (e.g., 4624 for logon and 4625 for failed logon) to filter and identify specific events.
 </p>
 <br />
