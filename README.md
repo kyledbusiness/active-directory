@@ -85,7 +85,6 @@ Now log into DC-1 again, but this time as mydomain.com\[whatever you set your us
 <h2>Step 3: Create Users and Organizational Units</h2>
 
 <p>
-<img width="2056" alt="Screenshot 2024-10-17 at 1 54 14 PM" src="https://github.com/user-attachments/assets/4ce0555f-451d-420f-a876-689ea61b7b36">
 <img width="2056" alt="Screenshot 2024-10-17 at 1 52 29 PM" src="https://github.com/user-attachments/assets/90c55542-6016-4cd3-9c98-e3495f84f72f">
 </p>
 <p>
@@ -94,12 +93,17 @@ Using Active Directory Users and Computers (ADUC), create three OUs: _EMPLOYEES,
 <br />
 
 <p>
-<img width="2056" alt="Screenshot 2024-10-17 at 1 56 41 PM" src="https://github.com/user-attachments/assets/b945aa4d-879b-4b71-9061-88b14566e20f">
-<img width="2056" alt="Screenshot 2024-10-17 at 1 56 16 PM" src="https://github.com/user-attachments/assets/88dec91b-43bf-4873-b229-5e539e589198">
 <img width="2056" alt="Screenshot 2024-10-17 at 1 54 32 PM" src="https://github.com/user-attachments/assets/4e87cb11-9589-40fb-b589-e77add4a41a1">
 </p>
 <p>
-Create a domain admin account, "jane_admin," and assign it to the Domain Admins group.
+Create a new user so we can make a Domain Admin account, "jane_admin."
+<br />
+
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 56 41 PM" src="https://github.com/user-attachments/assets/b945aa4d-879b-4b71-9061-88b14566e20f">
+</p>
+<p>
+Now assign the user to the Domain Admins group.
 </p>
 <br />
 
@@ -114,41 +118,34 @@ Log in as cyberlab.com\jane_admin for further administration.
 <h2>Step 4: Join the Client Machine to the Domain</h2>
 
 <p>
-
+<img width="2056" alt="Screenshot 2024-10-17 at 2 01 16 PM" src="https://github.com/user-attachments/assets/f7ad8cc4-cbb7-4c41-b2d5-7bcd7b2e3c37">
 </p>
 <p>
-Set the DNS settings of Client-1 to point to DC-1’s Private IP.
+In Client-1, go to your settings "About" section and click "Rename this PC (advanced)" then "Change" then add the name of your Domain to join this Client to the Domain. 
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 2 02 43 PM" src="https://github.com/user-attachments/assets/8b14a2eb-120f-4086-b401-68671b5f46f0">
 </p>
 <p>
-Restart Client-1 and join it to the domain mydomain.com.
+It will then ask for you to sign in as a Domain Admin to allow this. 
+
+Then allow your VM to restart.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
+</p><img width="2056" alt="Screenshot 2024-10-17 at 2 08 27 PM" src="https://github.com/user-attachments/assets/fc670165-b0c4-41f1-970f-76adb92f9f9e">
 <p>
 Verify the successful domain join in ADUC by confirming Client-1 appears in the Computers container.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Move Client-1 into the _CLIENTS OU.
 </p>
 <br />
 
 <h2>Step 5: Configure Group Policy for Remote Desktop</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 Using Group Policy Management Console (GPMC), create a GPO that allows domain users access to Remote Desktop.
