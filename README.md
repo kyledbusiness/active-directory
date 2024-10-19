@@ -225,21 +225,24 @@ We will log into that account again but this time with the right password and ve
 
 </p>
 <p>
-Create Network File Shares on DC-1
-
-Log into DC-1 as jane_admin and create the following folders on the *C:* drive:
+Log into DC-1 as jane_admin and create the following folders on the C: drive:
   
 - read-access
 - write-access
 - no-access
 - accounting
+</p>
+<br />
 
-Set Permissions on Folders
+<p>
+
+</p>
+<p>
+Set Permissions on Folders:
 
 - For read-access, assign Domain Users the Read permission.
 - For write-access, assign Domain Users the Read/Write permission.
 - For no-access, assign Domain Admins the Read/Write permission.
-
 </p>
 <br />
 
@@ -247,9 +250,7 @@ Set Permissions on Folders
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Test File Share Access
-
-On Client-1, log in as a normal user (e.g., cyberlab.com\john_employee).
+On Client-1, log in as a normal user (e.g., mydomain.com\john_employee).
 
 Open the Run dialog and type \\DC-1 to access the shared folders.
 
@@ -265,10 +266,14 @@ Test access to each folder:
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Create ACCOUNTANTS Security Group
-
 On DC-1, create a Security Group named ACCOUNTANTS in ADUC.
+</p>
+<br />
 
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
 Assign Read/Write permissions to the ACCOUNTANTS group on the accounting folder.
 </p>
 <br />
@@ -277,12 +282,22 @@ Assign Read/Write permissions to the ACCOUNTANTS group on the accounting folder.
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Test ACCOUNTANTS Permissions
-
 On Client-1, attempt to access the accounting folder as john_employee (should fail).
+</p>
+<br />
 
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
 Add john_employee to the ACCOUNTANTS security group.
+</p>
+<br />
 
+<p>
+<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+<p>
 Re-log into Client-1 and confirm access to the accounting folder now works.
 </p>
 <br />
