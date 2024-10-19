@@ -17,31 +17,19 @@ This lab demonstrates the deployment of an Active Directory environment in Azure
 <h2>Step 1: Deploy Azure Resources</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 12 48 31 PM" src="https://github.com/user-attachments/assets/69be9975-7170-4d72-beac-798495852c97">
 </p>
 <p>
 Create a Windows Server 2022 VM for the Domain Controller (DC-1).
-</p>
-<br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
 Create a Windows 10 VM for the Client machine (Client-1).
-</p>
-<br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
 Ensure both machines are in the same Resource Group and Virtual Network (Vnet).
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 12 54 33 PM" src="https://github.com/user-attachments/assets/219f8a01-4047-4aa9-819b-bb77b5a2adf2">
 </p>
 <p>
 Set the Private IP address for DC-1 to static.
@@ -49,43 +37,56 @@ Set the Private IP address for DC-1 to static.
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 14 36 PM" src="https://github.com/user-attachments/assets/338d0cd6-be64-4ed0-9578-de491d6bb6be">
 </p>
 <p>
-Verify connectivity using Azure Network Watcher.
+Set Client-1's DNS settings to DC-1's now static Private IP address, then restart Client-1 VM so the new settings will be enabled.
+</p>
+<br />
+
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 30 22 PM" src="https://github.com/user-attachments/assets/fdda1c54-a7bb-4042-99ca-5de758d83e0d">
+</p>
+<p>
+Log into Client-1 through Remote Desktop and run the "ping" DC-1's Private IP address in PowerShell to confirm connectivity.
+</p>
+<br />
+
+<p>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 31 28 PM" src="https://github.com/user-attachments/assets/274fc3fc-b96c-45fd-b1d5-494072552416">
+</p>
+<p>
+Then, run "ipconfig /all" and verify that DC-1's Private IP shows up under "DNS Servers."
 </p>
 <br />
 
 <h2>Step 2: Install Active Directory</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 47 37 PM" src="https://github.com/user-attachments/assets/37512fdc-d011-4964-a210-29419f4695c0">
 </p>
 <p>
-Log into DC-1 and install Active Directory Domain Services (AD DS).
+Open Server Manager
+
+Click "Add roles and features" and install "Active Directory Domain Services" and let DC-1 restart.
+
+Click on the flag icon on the top right and click "Promote this server to a Domain Controller," setting up a new forest with the domain name (e.g., mydomain.com). Then let it restart again.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 45 44 PM" src="https://github.com/user-attachments/assets/a4d48875-7934-438e-b5b3-bcfa29d7c484">
 </p>
 <p>
-Promote DC-1 to a Domain Controller, setting up a new forest with the domain name (e.g., cyberlab.com).
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Restart DC-1 and log in as cyberlab.com\labuser.
+Now log into DC-1 again, but this time as mydomain.com\[whatever you set your username for the Domain Controller VM in Azure].
 </p>
 <br />
 
 <h2>Step 3: Create Users and Organizational Units</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 54 14 PM" src="https://github.com/user-attachments/assets/4ce0555f-451d-420f-a876-689ea61b7b36">
+<img width="2056" alt="Screenshot 2024-10-17 at 1 52 29 PM" src="https://github.com/user-attachments/assets/90c55542-6016-4cd3-9c98-e3495f84f72f">
 </p>
 <p>
 Using Active Directory Users and Computers (ADUC), create three OUs: _EMPLOYEES, _ADMINS, and _CLIENTS.
@@ -93,15 +94,17 @@ Using Active Directory Users and Computers (ADUC), create three OUs: _EMPLOYEES,
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 56 41 PM" src="https://github.com/user-attachments/assets/b945aa4d-879b-4b71-9061-88b14566e20f">
+<img width="2056" alt="Screenshot 2024-10-17 at 1 56 16 PM" src="https://github.com/user-attachments/assets/88dec91b-43bf-4873-b229-5e539e589198">
+<img width="2056" alt="Screenshot 2024-10-17 at 1 54 32 PM" src="https://github.com/user-attachments/assets/4e87cb11-9589-40fb-b589-e77add4a41a1">
 </p>
 <p>
-Create a domain admin account, jane_admin, and assign it to the Domain Admins group.
+Create a domain admin account, "jane_admin," and assign it to the Domain Admins group.
 </p>
 <br />
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img width="2056" alt="Screenshot 2024-10-17 at 1 59 09 PM" src="https://github.com/user-attachments/assets/9158095d-ad1e-4086-9121-e2af5cf86103">
 </p>
 <p>
 Log in as cyberlab.com\jane_admin for further administration.
@@ -111,7 +114,7 @@ Log in as cyberlab.com\jane_admin for further administration.
 <h2>Step 4: Join the Client Machine to the Domain</h2>
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
 </p>
 <p>
 Set the DNS settings of Client-1 to point to DC-1’s Private IP.
@@ -122,7 +125,7 @@ Set the DNS settings of Client-1 to point to DC-1’s Private IP.
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Restart Client-1 and join it to the domain cyberlab.com.
+Restart Client-1 and join it to the domain mydomain.com.
 </p>
 <br />
 
